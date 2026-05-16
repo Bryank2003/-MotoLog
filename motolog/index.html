@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MotoLog — Controle de Entregas</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800&family=Barlow:wght@300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="motoboy_style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">
+    <div class="logo-icon">🏍️</div>
+    <div class="logo-text">
+      <h1>MotoLog</h1>
+      <p>Controle de Entregas</p>
+    </div>
+  </div>
+  <div class="header-date">
+    <strong id="hdr-date">—</strong>
+    <span id="hdr-day">—</span>
+  </div>
+</header>
+
+<!-- TABS -->
+<div class="tabs">
+  <button class="tab-btn active" onclick="switchTab('hoje',this)">Hoje</button>
+  <button class="tab-btn" onclick="switchTab('historico',this)">Histórico</button>
+</div>
+
+<!-- TAB HOJE -->
+<div class="tab-content active" id="tab-hoje">
+  <div class="container">
+
+    <!-- RESUMO -->
+    <div class="summary">
+      <div class="sum-card c1">
+        <div class="sum-lbl">Entregas hoje</div>
+        <div class="sum-val" id="s-count">0</div>
+      </div>
+      <div class="sum-card c2">
+        <div class="sum-lbl">Total hoje</div>
+        <div class="sum-val" id="s-total">R$ 0,00</div>
+      </div>
+      <div class="sum-card c3">
+        <div class="sum-lbl">Média por entrega</div>
+        <div class="sum-val" id="s-avg">R$ 0,00</div>
+      </div>
+    </div>
+
+    <!-- FORMULÁRIO NOVA ENTREGA -->
+    <div class="form-card">
+      <div class="form-title">Nova entrega</div>
+      <div class="form-row">
+        <div class="fg">
+          <label>Empresa / Cliente</label>
+          <input type="text" id="f-company" placeholder="Ex: iFood, Farmácia..." />
+        </div>
+        <div class="fg">
+          <label>Aplicativo</label>
+          <select id="f-app">
+            <option>Uber</option>
+            <option>99</option>
+            <option>iFood</option>
+            <option value="Particular">Particular</option>
+            <option value="Outro">Outro</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Valor (R$)</label>
+          <input type="number" id="f-value" placeholder="0,00" min="0" step="0.01" />
+        </div>
+        <button class="btn btn-add" onclick="addDelivery()">+ Adicionar</button>
+      </div>
+    </div>
+
+    <!-- LISTA DE ENTREGAS -->
+    <div class="list-header">
+      <div class="list-title">Entregas do dia</div>
+    </div>
+    <div class="deliveries" id="d-list"></div>
+
+    <!-- TOTAL -->
+    <div class="total-bar" id="total-bar" style="display:none">
+      <div class="total-lbl">Total do dia</div>
+      <div class="total-val" id="total-val">R$ 0,00</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- TAB HISTÓRICO -->
+<div class="tab-content" id="tab-historico">
+  <div class="container">
+    <div class="hist-filters">
+      <label>Filtrar por mês:</label>
+      <input type="month" id="f-month" onchange="renderHist()" />
+      <button class="btn-sm" onclick="clearFilter()">Ver todos</button>
+    </div>
+    <div id="hist-list"></div>
+  </div>
+</div>
+
+<script src="motoboy_script.js"></script>
+</body>
+</html>
